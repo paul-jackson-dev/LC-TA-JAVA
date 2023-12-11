@@ -20,6 +20,10 @@ public class Menu {
         this.items = items;
     }
 
+    public void removeItem(MenuItem menuItem){
+        this.items.remove(menuItem);
+    }
+
     public Date getLastUpdated() {
         return lastUpdated;
     }
