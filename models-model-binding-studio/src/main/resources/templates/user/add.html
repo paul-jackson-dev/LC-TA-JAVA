@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Spa Menu</title>
+    <link href="../static/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
+    <!--    <title th:text="${user.password}">Title</title>-->
+</head>
+<body>
+<form class="form-horizontal" method="post" action="/user">
+    <fieldset>
+
+        <!-- Form Name -->
+        <legend>User Sign Up</legend>
+
+        <span th:if="${error}">
+            <h1 th:text="|${error}|">Title</h1>
+        </span>
+
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="username">Username</label>
+            <div class="col-md-4">
+                <input th:value="${username}" id="username" name="username" type="text" placeholder="Enter a Username"
+                       class="form-control input-md" required="">
+            </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="email">Email</label>
+            <div class="col-md-4">
+                <input th:value="${email}" id="email" name="email" type="email" placeholder="Enter an Email"
+                       class="form-control input-md"
+                       required="">
+            </div>
+        </div>
+
+        <!-- Password input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="password">Password</label>
+            <div class="col-md-4">
+                <input id="password" name="password" type="password" placeholder="Enter a Password"
+                       class="form-control input-md" required="">
+            </div>
+        </div>
+        <!-- Password input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="verify">Verify Password</label>
+            <div class="col-md-4">
+                <input id="verify" name="verify" type="password" placeholder="Verify Password"
+                       class="form-control input-md" required="">
+            </div>
+        </div>
+
+        <!-- Button -->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="Submit">Submit</label>
+            <div class="col-md-4">
+                <button id="Submit" name="Submit" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+
+    </fieldset>
+</form>
+</body>
