@@ -1,17 +1,15 @@
 package org.launchcode.skillstracker.controllers;
 
+import org.launchcode.skillstracker.dtos.FormDTO;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @ResponseBody
 public class SkillsController {
 
     @GetMapping("")
-    public static String displayIndex(){
+    public String displayIndex(){
         return "<h1>Skills Tracker</h1>" +
                 "<h2>skills to pay the bills</h2>" +
                 "<ol>" +
@@ -22,8 +20,8 @@ public class SkillsController {
                 "<br>" +
                 "<a href=\"form\">...why not fill out a form?</a>";
     }
-    @GetMapping("/form")
-    public static String renderForm(){
+    @GetMapping("form")
+    public String renderForm(){
         return "<form action=\"/form\"\n method= \"post\">" +
                 "  <label for=\"name\">Name:</label><br>\n" +
                 "  <input type=\"text\" id=\"name\" name=\"name\" value=\"\"><br><br>\n" +
@@ -58,17 +56,37 @@ public class SkillsController {
                 "</form> ";
     }
 
-    @PostMapping("/form")
-    public static String processForm(@RequestParam String name, @RequestParam String favone, @RequestParam String favtwo,@RequestParam String favthree){
+//    @PostMapping("form")
+//    public String processForm(@RequestParam String name, @RequestParam String favone, @RequestParam String favtwo,@RequestParam String favthree){
+//        return "<h1> " +
+//                name +
+//                "</h1>" +
+//                "<ol><li>" +
+//                favone +
+//                "</li><li>" +
+//                favtwo +
+//                "</li><li>" +
+//                favthree +
+//                "</li></ol>"
+//                ;
+//    }
+
+    @PostMapping("form")
+    public String processForm(FormDTO formDTO){
+
+        if (formDTO.getName().isBlank()){
+            return "<h1>WHAT IS YOUR NAME</h1>";
+        }
+
         return "<h1> " +
-                name +
+                formDTO.getName() +
                 "</h1>" +
                 "<ol><li>" +
-                favone +
+                formDTO.getFavone() +
                 "</li><li>" +
-                favtwo +
+                formDTO.getFavtwo() +
                 "</li><li>" +
-                favthree +
+                formDTO.getFavthree() +
                 "</li></ol>"
                 ;
     }
